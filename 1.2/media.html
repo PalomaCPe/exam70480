@@ -1,0 +1,39 @@
+<head>
+    <style>
+        img:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var video;
+        window.onload = function () {
+            video = document.getElementById("sampleVideo");
+        }
+        function play() {
+            video.play();
+        }
+        function pause() {
+            video.pause();
+        }
+        function back() {
+            video.currentTime -= 10;
+        }
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <video height="400" width="600" id="sampleVideo">
+                    <source src="C:\Users\p.cristina.pereira\Videos\DoCommitAoDeploy\DoCommitAoDeploy-final.mp4" type="audio/mp4" />
+                </video>
+            </td>
+            <td>
+                <img title="back" id="backButton" src="../assets/button.svg" height="40" width="60" onclick="back();" /><br/>
+                <img title="play" id="playButton" src="../assets/button.svg" height="40" width="60" onclick="play();" /><br/>
+                <img title="pause" id="PauseButton" src="../assets/button.svg" height="40" width="60" onclick="pause();" /><br/>
+            </td>
+        </tr>
+    </table>
+</body>

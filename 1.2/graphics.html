@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Olá</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var drawingSurface = document.getElementById("drawingSurface");
+            var ctxt = drawingSurface.getContext("2d");
+
+            var drawingLine = document.getElementById("line");
+            contextLine = drawingLine.getContext("2d");
+
+            contextLine.beginPath(); 
+            contextLine.moveTo(100, 100); 
+            contextLine.lineTo(225, 350);           
+            contextLine.stroke();
+
+            ctxt.beginPath(); 
+            ctxt.moveTo(10, 10); 
+            ctxt.lineTo(225, 350); 
+            ctxt.lineTo(300, 10); 
+            ctxt.lineTo(400, 350);
+            ctxt.lineWidth = 5; 
+            ctxt.strokeStyle = '#191970';
+            ctxt.stroke();
+
+            
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="drawingSurface" width="600" height="400"> Your browser does not support HTML5. </canvas>
+
+    <canvas id="line" width="600" height="400"> Your browser does not support HTML5. </canvas>    
+
+</body>
+
+</html>
