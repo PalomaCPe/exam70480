@@ -14,34 +14,166 @@
         window.onload = function () {
             var drawingSurface = document.getElementById("drawingSurface");
             var ctxt = drawingSurface.getContext("2d");
+            var curvesA = document.getElementById("curvesA").getContext("2d");
+            var curvesQ = document.getElementById("curvesQ").getContext("2d");
+            var curvesB = document.getElementById("curvesB").getContext("2d");
+            //called using path
+            var complexCurves = document.getElementById("complexCurve").getContext("2d");
+            //effects drawing
+            var gradient = document.getElementById("gradient").getContext("2d");
+            var pattern = document.getElementById("pattern").getContext("2d");
+            var imgCanvas = document.getElementById("imgCanvas").getContext("2d");
+            var textCanvas = document.getElementById("textCanvas").getContext("2d");
 
             var drawingLine = document.getElementById("line");
             contextLine = drawingLine.getContext("2d");
 
-            contextLine.beginPath(); 
-            contextLine.moveTo(100, 100); 
-            contextLine.lineTo(225, 350);           
+            contextLine.beginPath();
+            contextLine.moveTo(100, 100);
+            contextLine.lineTo(225, 350);
             contextLine.stroke();
 
-            ctxt.beginPath(); 
-            ctxt.moveTo(10, 10); 
-            ctxt.lineTo(225, 350); 
-            ctxt.lineTo(300, 10); 
+            ctxt.beginPath();
+            ctxt.moveTo(10, 10);
+            ctxt.lineTo(225, 350);
+            ctxt.lineTo(300, 10);
             ctxt.lineTo(400, 350);
-            ctxt.lineWidth = 5; 
+            ctxt.lineWidth = 5;
             ctxt.strokeStyle = '#191970';
             ctxt.stroke();
 
-            
+            curvesA.beginPath();
+            //horario e antihorário
+            curvesA.arc(75, 150, 55, 0, Math.PI, false);
+            curvesA.arc(75, 150, 65, 0, Math.PI, true);
+            curvesA.strokeStyle = '#000';
+            curvesA.lineWidth = 20;
+            curvesA.stroke();
+
+            curvesQ.beginPath();
+            curvesQ.moveTo(10, 300);
+            curvesQ.quadraticCurveTo(30, -50, 60, 300);
+            curvesQ.strokeStyle = '#f00';
+            curvesQ.lineWidth = 3;
+            curvesQ.stroke();
+
+            curvesB.beginPath();
+            curvesB.moveTo(125, 20);
+            curvesB.bezierCurveTo(0, 200, 300, 300, 50, 400);
+            curvesB.lineWidth = 5;
+            curvesB.strokeStyle = '#ff0';
+            curvesB.stroke();
+
+            //using path
+            complexCurves.beginPath();
+            complexCurves.arc(300, 200, 75, 1.75 * Math.PI, 1.25 * Math.PI, false);
+            complexCurves.lineTo(150, 125);
+            complexCurves.quadraticCurveTo(300, 0, 450, 125);
+            complexCurves.lineTo(353, 144);
+            complexCurves.strokeStyle = "blue";
+            complexCurves.lineCap = "round";
+            complexCurves.lineWidth = 10;
+            complexCurves.stroke();
+
+            //adding efects to my drawing
+            gradient.lineWidth = 3;
+            gradient.rect(150, 150, 200, 125);
+            //element to manipulate color and gradient effect
+            var gradientEffect = gradient.createLinearGradient(150, 150, 200, 125);
+            gradientEffect.addColorStop(0, "Black");
+            gradientEffect.addColorStop(0.5, "Gray");
+            gradientEffect.addColorStop(1, "White");
+            //add to canvas in style my new objet effect
+            gradient.fillStyle = gradientEffect;
+            gradient.fill();
+            gradient.stroke();
+
+            pattern.lineWidth = 3;
+            pattern.rect(100, 100, 400, 250);
+            var img = new Image();
+            img.src = "../assets/pngSample.png";
+            img.onload = function () {
+                //createPatten (obj, repeat(default)/no-repeat/repeat-x/repeat-y)
+                var pt = pattern.createPattern(img, "repeat");
+                pattern.fillStyle = pt;
+                pattern.fill();
+                pattern.stroke();
+            }
+
+            var imgDrawn = new Image();
+            imgDrawn.src = "../assets/pngSample.png";
+            imgDrawn.onload = function () {
+                imgCanvas.drawImage(imgDrawn, 0, 0);
+                imgCanvas.stroke();
+            }
+
+            textCanvas.strokeText("1. Text with default font", 100, 100);
+            textCanvas.font = "24px arial";
+            textCanvas.strokeText("2. Text with altered font", 100, 125);
+            textCanvas.font = "24px arial";
+            textCanvas.strokeStyle = "Red";
+            textCanvas.strokeText("3. Text with altered colored font", 100, 160);
+            textCanvas.font = "24px arial";
+            textCanvas.textAlign = "center";
+            textCanvas.fillStyle = "Red";
+            textCanvas.fillText("5. Text with altered colored font Centered.",
+                document.getElementById("textCanvas").width / 2,
+                document.getElementById("textCanvas").height / 2);
+        }
+
+        //SVG Functions
+        function Red(evt) {
+            var circle = evt.target;
+            circle.setAttribute("style", "fill: red");
+        }
+        function Green(evt) {
+            var circle = evt.target;
+            circle.setAttribute("style", "fill: green");
         }
     </script>
 </head>
 
 <body>
-    <canvas id="drawingSurface" width="600" height="400"> Your browser does not support HTML5. </canvas>
+    <div id="canvas">
+        <canvas id="drawingSurface" width="600" height="400"> Your browser does not support HTML5. </canvas>
 
-    <canvas id="line" width="600" height="400"> Your browser does not support HTML5. </canvas>    
+        <canvas id="line" width="600" height="400"> Your browser does not support HTML5. </canvas>
 
+        <canvas id="curvesA" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="curvesQ" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="curvesB" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="complexCurve" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="gradient" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="pattern" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="imgCanvas" width="600" height="400">Não suporta :)</canvas>
+
+        <canvas id="textCanvas" width="600" height="400">Não suporta :)</canvas>
+    </div>
+
+    <div id="svg" style="height:300px;padding:30px 0px;">
+        <svg>
+            <circle id="Circle" cx="50" cy="50" r="50" fill="green" onmouseover="Red(evt)" onmouseout="Green(evt)" />
+        </svg>
+
+        <svg style="overflow:overlay">
+            <polygon points="10,15 30,35 10,85 100,85, 70,35,100,15" fill="pink"/>
+
+            <polyline points="10,150 30,170 50,132 62,196 78,165 96,170" style="stroke:orange; fill:none; stroke-width:5;"/>
+            
+            <line x1="150" y1="100" x2="150" y2="150" style="stroke:blue;stroke-width:3"/>
+
+            <ellipse cx="250" cy="150" rx="30" ry="55" fill="green"/>
+        
+            <text x="10" y="10" style="stroke: black;stroke-width:1;">
+            Examples of SVG Shapes and Text</text>
+        </svg>
+    </div>
 </body>
 
 </html>
