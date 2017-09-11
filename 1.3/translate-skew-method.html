@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lag="en" xmlns="paloma.std">
+    <head>
+        <meta charset="utf-8">
+        <title>applying transform</title>
+        <style>
+            .translate{
+                transform: translate(50px, 50px)
+            }
+            .skew{
+                transform: skew(10deg, 10deg);
+            }
+        </style>
+        <script>
+            window.onload = function(){
+                var img = document.getElementById("wtrmellow1");
+                
+                img.onclick = function () {
+                    this.classList.add("translate");
+                }
+
+                img.ondblclick = function () {
+                    this.classList.add("skew");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <img src="../assets/Melancia.jpg" id="wtrmellow1" style="position:relative" />
+    </body>
+</html>
