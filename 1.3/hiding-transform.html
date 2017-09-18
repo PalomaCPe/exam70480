@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lag="en" xmlns="paloma.std">
+
+<head>
+    <meta charset="utf-8">
+    <title>hiding</title>
+    <script>
+        window.onload = function () {
+            document.getElementById("btnD").onclick = function () {
+                if (document.getElementById("innerDivDois").style.display == 'inline')
+                    document.getElementById("innerDivDois").style.display = 'none';
+                else
+                    document.getElementById("innerDivDois").style.display = 'inline';
+            }
+            document.getElementById("btnV").onclick = function () {
+                if (document.getElementById("innerDivDois").style.visibility == 'visible')
+                    document.getElementById("innerDivDois").style.visibility = 'hidden';
+                else
+                    document.getElementById("innerDivDois").style.visibility = 'visible';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btnD">Show - display</button>
+    <button type="button" id="btnV">Show - visibility</button>
+    <div id="innerDivUm" style="background-color: red;width:50px;height:50px"></div>
+    <div id="innerDivDois" style="background-color: yellow;width:50px;height:50px"></div>
+    <div id="innerDivTres" style="background-color: blue;width:50px;height:50px"></div>
+</body>
+
+</html>
